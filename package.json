@@ -1,0 +1,27 @@
+{
+  "name": "json-stream",
+  "version": "0.0.0",
+  "description": "JSON.parse and JSON.stringify wrapped in a node.js stream",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasonkuhrt/json-stream.git"
+  },
+  "keywords": [
+    "json",
+    "stream"
+  ],
+  "author": "Jason Kuhrt <jasonkuhrt@me.com> (http://jasonkuhrt.com/)",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/jasonkuhrt/json-stream/issues"
+  },
+  "dependencies": {
+    "bun": "0.0.10",
+    "tstream": "git://github.com/jasonkuhrt/tstream",
+    "delimit-stream": "0.0.1"
+  }
+}
