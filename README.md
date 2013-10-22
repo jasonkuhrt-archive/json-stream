@@ -1,5 +1,4 @@
 # json-stream [![Build Status](https://travis-ci.org/jasonkuhrt/json-stream.png)](https://travis-ci.org/jasonkuhrt/json-stream) [![Dependency Status](https://gemnasium.com/jasonkuhrt/json-stream.png)](https://gemnasium.com/jasonkuhrt/json-stream)
-[!]
 JSON.parse and JSON.stringify wrapped in a node.js stream
 
 ## Install
