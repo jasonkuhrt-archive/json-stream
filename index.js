@@ -11,7 +11,7 @@ var json_stream = {
       data = JSON.parse(chunk.toString());
       this.push(data);
     } catch(err) {
-      // Silently drop parse errors
+      this.emit('warn', err);
       return;
     }
     done();
@@ -26,10 +26,11 @@ var json_stream = {
 
 module.exports = {
   Parse: function(deliminiter){
-    return bun([
-      new delimiter_frame.Receive(deliminiter, {objectMode:true}),
-      new json_stream.Parse({objectMode:true})
-    ]);
+    var frame_receive = new delimiter_frame.Receive(deliminiter, {objectMode:true});
+    var json_parse = new json_stream.Parse({objectMode:true});
+    var pipeline = bun([frame_receive, json_parse]);
+    event_forward('warn', json_parse, pipeline);
+    return pipeline;
   },
   Stringify: function(deliminiter) {
     return bun([
@@ -38,3 +39,11 @@ module.exports = {
     ]);
   }
 };
+
+function event_forward(event, ee_from, ee_to){
+  ee_from.on(event, function(){
+    var args = Array.prototype.slice.call(arguments, 0);
+    args.unshift(event);
+    ee_to.emit.apply(ee_to, args);
+  });
+}

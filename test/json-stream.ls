@@ -9,6 +9,14 @@ test 'json_stream.Parse', (t)->
   parse_stream.write('{"a":1}\n')
   parse_stream.on 'data', t.same(_, {a:1})
 
+  t.test 'json_stream.Parse "warn" events', (st)->
+    st.plan(1)
+    parse_stream = new json_stream.Parse('\n')
+    parse_stream.write('{a:1}\n')
+    parse_stream.on 'warn', (err)->
+      st.notEqual(void, err)
+
+
 test 'json_stream.Stringify', (t)->
   t.plan(1)
   stringify_stream = new json_stream.Stringify('\n')
