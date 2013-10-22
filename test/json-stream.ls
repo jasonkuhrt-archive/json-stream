@@ -1,0 +1,16 @@
+test = require('tape')
+json_stream = require('../')
+
+
+
+test 'json_stream.Parse', (t)->
+  t.plan(1)
+  parse_stream = new json_stream.Parse('\n')
+  parse_stream.write('{"a":1}\n')
+  parse_stream.on 'data', t.same(_, {a:1})
+
+test 'json_stream.Stringify', (t)->
+  t.plan(1)
+  stringify_stream = new json_stream.Stringify('\n')
+  stringify_stream.write({a:1})
+  stringify_stream.on 'data', (buffer)-> t.equal(buffer.toString(), '{"a":1}\n')
