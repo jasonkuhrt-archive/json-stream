@@ -1,5 +1,5 @@
 {
-  "name": "json-stream",
+  "name": "json-stream2",
   "version": "0.0.2",
   "description": "JSON.parse and JSON.stringify wrapped in a node.js stream",
   "main": "index.js",

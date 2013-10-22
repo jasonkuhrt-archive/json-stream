@@ -2,7 +2,7 @@
 JSON.parse and JSON.stringify wrapped in a node.js stream
 
 ## Install
-    npm install jasonkuhrt/json-stream
+    npm install json-stream2
 
 ## Example
 ```js
