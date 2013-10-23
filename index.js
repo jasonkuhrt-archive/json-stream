@@ -5,16 +5,15 @@ var delimiter_frame = require('./lib/delimiter-frame');
 
 
 var json_stream = {
-  Parse: tstream(function(chunk, encoding, done){
-    var data;
+  Parse: tstream(function(chunk, encoding, callback){
     try {
-      data = JSON.parse(chunk.toString());
+      var data = JSON.parse(chunk.toString());
       this.push(data);
     } catch(err) {
-      this.emit('warn', err);
-      return;
+      this.emit('warn', err, chunk.toString());
+    } finally {
+      callback();
     }
-    done();
   }),
   Stringify: tstream(function(obj, encoding, done){
     this.push(JSON.stringify(obj));
